@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lista de tarefas</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="main.js">
+</head>
+<head>
+    <title>Lista de Tarefas</title>
+    <style>
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+
+        li:hover {
+            background-color: #f0f0f0;
+        }
+
+        .completed {
+            text-decoration: line-through;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+    <h1>Lista de Tarefas</h1>
+    
+    <form id="formTarefa">
+        <label for="nomeTarefa">Nova Tarefa:</label>
+        <input type="text" id="nomeTarefa" required>
+        <button type="submit">Adicionar Tarefa</button>
+    </form>
+    
+    <ul id="listaTarefas"></ul>
+
+    <script>
+        $(document).ready(function () {
+            $('#formTarefa').submit(function (event) {
+                event.preventDefault();
+                var nomeTarefa = $('#nomeTarefa').val();
+                adicionarTarefa(nomeTarefa);
+                $('#nomeTarefa').val(''); 
+            });
+
+            $('#listaTarefas').on('click', 'li', function () {
+                $(this).toggleClass('completed');
+            });
+
+            function adicionarTarefa(nomeTarefa) {
+                var novaTarefa = $('<li>').text(nomeTarefa);
+                $('#listaTarefas').append(novaTarefa);
+            }
+        });
+    </script>
+
+</body>
+</html>
+
